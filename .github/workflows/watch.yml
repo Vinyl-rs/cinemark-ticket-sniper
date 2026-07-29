@@ -1,4 +1,4 @@
-name: watch
+name: watch-seats
 on:
   schedule:
     # Offset from :00/:30 on purpose: GitHub sheds scheduled runs at peak minutes.
