@@ -7,7 +7,7 @@ theater = "il-woodridge/cinemark-seven-bridges-and-imax"
 
 # Movie id: on the theater page, right-click any showtime of your movie and
 # copy the link: it looks like /TicketSeatMap/?TheaterId=...&CinemarkMovieId=104867&...
-movie_id = 104867
+movie_id = "104867"
 
 # Used in alert messages only.
 movie_name = "The Odyssey IMAX 70MM"
