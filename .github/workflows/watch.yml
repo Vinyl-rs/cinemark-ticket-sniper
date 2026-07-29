@@ -38,13 +38,27 @@ jobs:
         if: ${{ !inputs.test_alert }}
         run: python3 watch.py --once
 
-      - name: Persist state
+       - name: Persist state
         run: |
-          git config user.name "odyssey-watcher[bot]"
-          git config user.email "actions@users.noreply.github.com"
+          echo "Checking files..."
+          ls -la
+
+          echo "Git status before add:"
+          git status --short
+
           git add state.json alerts.log 2>/dev/null || true
+
+          echo "Git status after add:"
+          git status --short
+
+          git diff --cached --stat
+
           if ! git diff --cached --quiet; then
+            git config user.name "odyssey-watcher[bot]"
+            git config user.email "actions@users.noreply.github.com"
             git commit -m "state: sweep $(date -u '+%Y-%m-%d %H:%M UTC')"
             git pull --rebase --autostash origin main || true
             git push
+          else
+            echo "Nothing to commit"
           fi
